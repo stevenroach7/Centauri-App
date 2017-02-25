@@ -1,3 +1,14 @@
+
+
+button, a {
+  font-family: 'Actor', sans-serif;
+}
+
+body {
+  font-family: 'PT Serif', serif;
+}
+
+
 .full-card {
   margin: 0px 0px 0px 0px;
 }
