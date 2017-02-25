@@ -82,7 +82,7 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
   })
 
   .state('tab.portfolioviewitem', {
-    url: '/portfolioviewitem/:paperid',
+    url: '/portfolioviewitem/:papername',
     views: {
       'tab-portfolio': {
         templateUrl: 'templates/portfolio-view-item.html',

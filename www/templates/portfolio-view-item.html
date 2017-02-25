@@ -9,18 +9,15 @@
 
     <div class="card full-card">
       <ion-slide-box>
-        <ion-slide ng-repeat="imageUrl in u">
+        <ion-slide ng-repeat="imageUrl in images">
           <div class="item item-image slide-image">
             <img src="{{imageUrl}}">
           </div>
         </ion-slide>
       </ion-slide-box>
-      <div class="item item-text-wrap">
-        {{paper.content["short-description"]}}
-      </div>
     </div>
 
-    <a class="button button-block button-positive">Contact: researcher@institution.edu</a>
+    <a class="button button-block button-positive">Contact: {{email()}}</a>
     <a class="button button-block button-stable">Full paper online</a>
   </ion-content>
 </ion-view>

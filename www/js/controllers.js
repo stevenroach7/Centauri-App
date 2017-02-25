@@ -144,7 +144,7 @@ angular.module('centauriApp.controllers', [])
 
 .controller('PortfolioCtrl', function($scope, $ionicPopup) {
 
-  $scope.folders = [ "Machine Learning", "Neuroscience", "Chemistry", "Physics", "Biology"];
+  $scope.folders = [ "Chemistry", "Computer Science", "Neuroscience", "Physics", "Biology"];
 
   $scope.newfolder = function() {
     /* Takes a user and displays the edit profile popup for that user. */
@@ -183,14 +183,27 @@ angular.module('centauriApp.controllers', [])
 .controller('PortfolioFolderCtrl', function($scope, $stateParams) {
   $scope.folder = $stateParams.foldername;
   $scope.papers = {
-    "Machine Learning" : ["Algorithm for Evolving AIs using principles of genetics", "Machine Learning algorithm designed around interpereting images"],
-    "Neuroscience" : ["c", "d"],
+    "Chemistry" : ["Synthetically producing benzyl alcohol"],
+    "Computer Science" : ["Compressed sensing"],
   }
+
+  
 })
 
 .controller('PortfolioViewItemCtrl', function($scope, $stateParams, $ionicSlideBoxDelegate, ResearchService) {
-  $scope.paper = ResearchService.getResearchExamples([])[0];
-  $scope.u = "/img/max.png";
+
+  $scope.slides = function(desc) {
+    if(desc === "Compressed sensing")
+      return ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"];
+    if(desc === "Synthetically producing benzyl alcohol")
+      return ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+  }
+
+  $scope.email = function() {
+    return ($stateParams.papername === "Compressed sensing") ? "massimo.fornasier@oeaw.ac.at" : "amaguire@uib.no";
+  }
+
+  $scope.images = $scope.slides($stateParams.papername);
 })
 
 .controller('RequestCtrl', function($scope, $state, RequestService, $ionicPopup) {

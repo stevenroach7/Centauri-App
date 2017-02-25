@@ -5,13 +5,12 @@
         <button class="button button-icon icon ion-chevron-left"></button>
       </a>
       <h1 class="title"></h1>
-      <button class="button button-icon icon ion-plus">Add selected to...</button>
     </div>
     <div class="space"></div>
     <div ng-repeat="paper in papers[folder]">
       <div class="row">
         <div class="col">
-          <a ng-href="#/tab/portfolioviewitem/0">
+          <a ng-href="#/tab/portfolioviewitem/{{paper}}">
             <div class="card folder-card">
               <div class="item item-text-wrap">
                 {{paper}}
