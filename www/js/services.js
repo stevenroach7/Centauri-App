@@ -217,32 +217,23 @@ servMod.factory('AccountService', function($firebaseObject, $firebaseArray, $q) 
       /* Takes an explorerID and returns an array of their genre preferences. */
 
      // Get array of research papers.
-     var genresRef = firebase.database().ref().child("explorers").child(explorerID).child("preferences").child("genres");
+     var genresRef = firebase.database().ref().child("explorers").child(explorerID).child("preferences");
      var genres = $firebaseArray(genresRef);
 
      return genres;
 
    },
 
-   getExplorerSavedPaperIDs: function(explorerID) {
+   getExplorerPapersSeenIDs: function(explorerID) {
      /* Takes an explorerID and returns an array with the id's of their saved papers. */
 
     // Get array of research papers.
-    var savedPapersRef = firebase.database().ref().child("explorers").child(explorerID).child("saved-papers");
-    var savedPapers = $firebaseArray(savedPapersRef);
+    var papersSeenRef = firebase.database().ref().child("explorers").child(explorerID).child("papers-seen");
+    var papersSeen = $firebaseArray(papersSeenRef);
 
-    return savedPapers;
+    return papersSeen;
   },
 
-  getExplorerIgnoredPaperIDs: function(explorerID) {
-    /* Takes an explorerID and returns an array with the id's of their ignored papers. */
-
-   // Get array of research papers.
-   var ignoredPapersRef = firebase.database().ref().child("explorers").child(explorerID).child("ignored-papers");
-   var ignoredPapers = $firebaseArray(ignoredPapersRef);
-
-   return ignoredPapers;
-  }
 
     };
   });
