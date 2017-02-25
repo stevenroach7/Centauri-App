@@ -147,10 +147,25 @@ angular.module('centauriApp.controllers', [])
 
 
 .controller('PortfolioCtrl', function($scope) {
+  $scope.folders = [ "Machine Learning", "Neuroscience", "Chemistry", "Physics", "Biology"]
 
+  $scope.newfolder = function(name) {
+    $scope.folders.push(name);
+  }
 })
 
+.controller('PortfolioFolderCtrl', function($scope, $stateParams) {
+  $scope.folder = $stateParams.foldername;
+  $scope.papers = { 
+    "Machine Learning" : ["a", "b"],
+    "Neuroscience" : ["c", "d"],
+  }
+})
 
+.controller('PortfolioViewItemCtrl', function($scope, $stateParams, $ionicSlideBoxDelegate, ResearchService) {
+  $scope.paper = ResearchService.getResearchExamples([])[0];
+  $scope.u = "/img/max.png";
+})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

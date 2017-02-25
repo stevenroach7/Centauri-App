@@ -71,6 +71,26 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
       }
     })
 
+  .state('tab.portfoliofolder', {
+    url: '/portfoliofolder/:foldername',
+    views: {
+      'tab-portfolio': {
+        templateUrl: 'templates/portfolio-inside-folder.html',
+        controller: 'PortfolioFolderCtrl'
+      }
+    }
+  })
+  
+  .state('tab.portfolioviewitem', {
+    url: '/portfolioviewitem/:paperid',
+    views: {
+      'tab-portfolio': {
+        templateUrl: 'templates/portfolio-view-item.html',
+        controller: 'PortfolioViewItemCtrl'
+      }
+    }
+  })
+
 
   .state('tab.account', {
     url: '/account',

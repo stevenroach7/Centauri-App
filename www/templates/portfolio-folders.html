@@ -2,8 +2,23 @@
   <ion-content has-bouncing="false" scroll="false">
     <div class="bar bar-header">
       <h1 class="title"></h1>
-      <button class="button button-icon icon ion-plus">New Folder</button>
+      <button class="button button-icon icon ion-plus" ng-click="newfolder(&quot;test&quot;)">New Folder</button>
     </div>
+    <div ng-repeat="folder in folders">
+      <div class="row">
+        <div class="col">
+          <a ng-href="#/tab/portfoliofolder/{{folder}}">
+            <div class="card folder-card">
+              <div class="item item-text-wrap">
+                {{folder}}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!--
     <div class="row">
       <div class="col">
         <div class="card folder-card">
@@ -47,5 +62,6 @@
       </div>
       <div class="col"></div>
     </div>
+    -->
   </ion-content>
 </ion-view>
