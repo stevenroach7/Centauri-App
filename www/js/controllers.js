@@ -126,13 +126,24 @@ angular.module('centauriApp.controllers', [])
 
 .controller('FeedCtrl', function($scope, ResearchService, AccountService, AuthenticationService) {
 
-  $scope.researchIndex = 0;
-  $scope.currentResearch = ResearchService.getResearchData(0);
+  $scope.curPaperID = 0;
 
-  $scope.showNewResearch = function() {
-    $scope.researchIndex = $scope.researchIndex + 1;
-    $scope.currentResearch = ResearchService.getResearchData($scope.researchIndex);
-  };
+  $scope.curPaper = function() {
+    return $scope.paperObjects[$scope.curPaperID];
+  }
+
+  $scope.curID = function() {
+    return $scope.curPaperID;
+  }
+
+  $scope.onIgnore = function() {
+    $scope.curPaperID++;
+    
+  }
+  $scope.onSave = function() {
+    $scope.curPaperID++;
+  }
+
 
   function filterPapers(paperObjects, userPrefTags, savedPapersIDs, ignoredPaperIDs) {
 
@@ -181,6 +192,7 @@ angular.module('centauriApp.controllers', [])
     $scope.paperObjects = filterPapers(paperObjects, userPrefTags, savedPapersIDs, ignoredPaperIDs);
 
   }, 1000);
+
 
 
 })

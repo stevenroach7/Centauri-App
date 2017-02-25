@@ -52,10 +52,10 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
   // Each tab has its own nav history stack:
 
   .state('tab.feed', {
-    url: '/research-feed',
+    url: '/feed',
     views: {
       'tab-feed': {
-        templateUrl: 'templates/research-feed.html',
+        templateUrl: 'templates/feed-full.html',
         controller: 'FeedCtrl'
       }
     }
