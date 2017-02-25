@@ -68,16 +68,14 @@ servMod.factory('AuthenticationService', function(firebase, $q) {
 
         // Add user to firebase DB.
         var newUserInfo = {
-          name: regData.name,
-          email: regData.email,
-          bio: regData.bio
+          email: regData.email
         };
 
         // Get firebase unique authentication id of user so we can use as key in our users Object.
         var newUserID = user.uid;
 
         // Get reference to firebase users table so we can add a new user.
-        var usersRef = firebase.database().ref().child("users");
+        var usersRef = firebase.database().ref().child("explorers");
 
         // Add new user to users object with key being the userID specified by the firebase authentication provider.
         return usersRef.child(newUserID).set(newUserInfo);
@@ -127,35 +125,51 @@ servMod.factory('AuthenticationService', function(firebase, $q) {
 
 
 
-servMod.factory('ResearchService', function() {
+servMod.factory('ResearchService', function($firebaseObject, $q) {
   /* Contains methods to get research data */
 
 
-  var researchExample = {
-
-    title: "Neural Network",
-    author: "Terence Tao",
-    description: "Fancy Math",
-    journal: "",
-    imageUrl: "../img/neural-network.png"
-
-  };
-
-
+  var researchExamples = [
+    {
+      title: "Neural Network",
+      author: "Terence Tao",
+      description: "Fancy Math",
+      journal: "",
+      imageUrl: "../img/neural-network.png"
+    },
+    {
+      title: "Vitamin C and Colds",
+      author: "Hemilä H",
+      description: "Science!",
+      journal: "",
+      imageUrl: "../img/perry.png"
+    }
+  ];
 
 
 
   return {
 
-    getResearchData: function() {
+    getResearchData: function(index) {
       /* Returns a fake example of a research paper description. */
-      return researchExample;
+      return researchExamples[index];
+    },
+
+    getResearchExample: function(exampleID) {
+      /* Takes the id of a research example and returns an object representing that example.*/
+      var deferred = $q.defer();
+
+      var exampleRef = firebase.database().ref().child("research-examples").child(exampleID);
+      var researchExample = $firebaseObject(exampleRef);
+      researchExample.$loaded()
+      .then(function() {
+        deferred.resolve(researchExample);
+      })
+      .catch(function(error) {
+        deferred.reject();
+      });
+      return deferred.promise;
     }
-
-
-
-
-
 
   };
 

@@ -16,8 +16,6 @@ angular.module('centauriApp.controllers', [])
       email: "",
       password1: "",
       password2: "",
-      name: "",
-      bio: ""
     };
     return regData;
   }
@@ -46,12 +44,11 @@ angular.module('centauriApp.controllers', [])
   function validateUserInfo(regData) {
     /* Takes user inputted data and performs client side validation to determine if it is valid.
     Displays an error alert if neccesary. Returns a boolean for if data inputted is valid. */
-    var currentYear = new Date().getFullYear();
 
     if (regData.password1 !== regData.password2) {
       showErrorAlert("Please make sure passwords match.");
       return false;
-    } else if (regData.email.length <= 0 || regData.password1.length <= 0 || regData.name.length <= 0) {
+    } else if (regData.email.length <= 0 || regData.password1.length <= 0) {
       showErrorAlert("Please fill out all required fields.");
       return false;
     }
@@ -129,10 +126,13 @@ angular.module('centauriApp.controllers', [])
 
 .controller('FeedCtrl', function($scope, ResearchService) {
 
+  $scope.researchIndex = 0;
+  $scope.currentResearch = ResearchService.getResearchData(0);
 
-  $scope.researchExample = ResearchService.getResearchData();
-  
-
+  $scope.showNewResearch = function() {
+    $scope.researchIndex = $scope.researchIndex + 1;
+    $scope.currentResearch = ResearchService.getResearchData($scope.researchIndex);
+  };
 
 })
 
