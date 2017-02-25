@@ -129,9 +129,13 @@ angular.module('centauriApp.controllers', [])
 
 .controller('FeedCtrl', function($scope, ResearchService) {
 
-
-  $scope.researchExample = ResearchService.getResearchData();
+  $scope.researchIndex = 0;
+  $scope.currentResearch = ResearchService.getResearchData(0);
   
+  $scope.showNewResearch = function() {
+    $scope.researchIndex = $scope.researchIndex + 1;
+    $scope.currentResearch = ResearchService.getResearchData($scope.researchIndex);
+  }
 
 
 })

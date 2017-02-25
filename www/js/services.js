@@ -131,15 +131,22 @@ servMod.factory('ResearchService', function() {
   /* Contains methods to get research data */
 
 
-  var researchExample = {
-
-    title: "Neural Network",
-    author: "Terence Tao",
-    description: "Fancy Math",
-    journal: "",
-    imageUrl: "../img/neural-network.png"
-
-  };
+  var researchExamples = [
+    {
+      title: "Neural Network",
+      author: "Terence Tao",
+      description: "Fancy Math",
+      journal: "",
+      imageUrl: "../img/neural-network.png"
+    },
+    {
+      title: "Vitamin C and Colds",
+      author: "Hemilä H",
+      description: "Science!",
+      journal: "",
+      imageUrl: "../img/perry.png"
+    }
+  ]
 
 
 
@@ -147,9 +154,9 @@ servMod.factory('ResearchService', function() {
 
   return {
 
-    getResearchData: function() {
+    getResearchData: function(index) {
       /* Returns a fake example of a research paper description. */
-      return researchExample;
+      return researchExamples[index];
     }
 
 
