@@ -12,7 +12,7 @@ textarea {
 
 /* Have to do it this way so it'll override ionic's css styles*/
 .slide-image img:first-child {
-  height: 215px;
+  height: 500px;
   width: auto;
 }
 
@@ -31,7 +31,7 @@ a {
 .folder-card {
   height: 100%;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .folder-card div:first-child {
