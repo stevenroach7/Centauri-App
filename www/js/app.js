@@ -65,7 +65,7 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
       url: '/portfolio',
       views: {
         'tab-portfolio': {
-          templateUrl: 'templates/tab-chats.html',
+          templateUrl: 'templates/portfolio-folders.html',
           controller: 'PortfolioCtrl'
         }
       }

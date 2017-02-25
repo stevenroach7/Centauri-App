@@ -148,7 +148,6 @@ servMod.factory('ResearchService', function($firebaseArray, $q) {
 
 
 
-
   return {
 
     getResearchData: function(index) {

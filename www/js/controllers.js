@@ -126,74 +126,22 @@ angular.module('centauriApp.controllers', [])
 
 .controller('FeedCtrl', function($scope, ResearchService, AccountService, AuthenticationService) {
 
-  $scope.curPaperID = 0;
 
-  $scope.curPaper = function() {
-    return $scope.paperObjects[$scope.curPaperID];
-  }
+  $scope.paperObjects = ResearchService.getResearchExamples();
+
+  $scope.curPaperIndex = 0;
 
   $scope.curID = function() {
     return $scope.curPaperID;
-  }
+  };
 
   $scope.onIgnore = function() {
+
     $scope.curPaperID++;
-    
-  }
+  };
   $scope.onSave = function() {
     $scope.curPaperID++;
-  }
-
-
-  function filterPapers(paperObjects, userPrefTags, savedPapersIDs, ignoredPaperIDs) {
-
-    var filteredPapers;
-
-    if (userPrefTags.length === 0) {
-      filteredPapers = paperObjects;
-    } else {
-      filteredPapers = [];
-      for (var i = 0; i < paperObjects.length; i++) {
-        var paper = paperObjects[i];
-        for (var j = 0; j < userPrefTags.length; j++) {
-
-          if (paper.tags[userPrefTags[j]] === 1) {
-            filteredPapers.push(paperObjects[i].id);
-            break;
-          }
-        }
-      }
-    }
-
-    var filteredPapersUnseen = [];
-
-    for (var k = 0; k < filteredPapers.length; k++) {
-
-        if (savedPapersIDs.indexOf(filteredPapers[k]) == -1 && ignoredPaperIDs.indexOf(filteredPapers[k]) == -1) {
-          filteredPapersUnseen.push(filteredPapers[k]);
-        }
-    }
-    return filteredPapersUnseen;
-  }
-
-
-  var currentUserID = AuthenticationService.getCurrentUserID();
-  var paperObjects = ResearchService.getResearchExamples();
-  var userPref = AccountService.getExplorerGenreTags(currentUserID);
-  var papersSeen = AccountService.getExplorerPapersSeenIDs(currentUserID);
-
-
-  setTimeout(function() {
-
-    var ignoredPaperIDs = papersSeen[0];
-    var savedPapersIDs = papersSeen[1];
-    var userPrefTags = userPref[0];
-
-    $scope.paperObjects = filterPapers(paperObjects, userPrefTags, savedPapersIDs, ignoredPaperIDs);
-
-  }, 1000);
-
-
+  };
 
 })
 
@@ -209,33 +157,3 @@ angular.module('centauriApp.controllers', [])
     enableFriends: true
   };
 });
-
-
-
-// .filter('filterPapers', function($filter) {
-//     /* Takes a time in seconds and converts it to a string represetation of the time. */
-//     return function(papers, tagsFilterArray) {
-//
-//       var filteredPapers;
-//
-//       if (tagsFilterArray.length === 0) {
-//         filteredPapers = papers;
-//       } else {
-//         filteredPapers = [];
-//         for (var i = 0; i < papers.length; i++) {
-//           var paper = papers[i];
-//           for (var j = 0; j < tagsFilterArray.length; j++) {
-//
-//             var tag = tagsFilterArray.value;
-//             console.log(tag);
-//             if (paper.tags[tagsFilterArray[i]] === 1) {
-//               filteredPapers.push(paper);
-//               break;
-//             }
-//           }
-//         }
-//       }
-//       // return filteredPapers;
-//       return papers;
-//     };
-// });
