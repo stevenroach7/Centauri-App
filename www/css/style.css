@@ -1,12 +1,34 @@
-/* Empty. Add your own CSS if you like */
-.card {
-  margin: 0px;
+
+.full-card {
+  margin: 0px 0px 0px 0px;
 }
 
-.button-bar {
-  height: 150px;
+/* Have to do it this way so it'll override ionic's css styles*/
+.slide-image img:first-child {
+  height: 275px;
+  width: auto;
 }
 
-.button {
-  margin-top: 0px;
+.col {
+  padding: 0px;
+}
+
+.row {
+  height: 30%;
+}
+
+/* only make first row short */
+.row { margin-top: 44px; }
+.row ~ .row { margin-top: 0px; }
+
+.folder-card {
+  height: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.folder-card div:first-child {
+  text-align: center;
+  font-size: 18px;
+  line-height: 24px;
 }
