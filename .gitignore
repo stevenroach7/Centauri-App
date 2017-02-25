@@ -5,3 +5,8 @@ node_modules/
 platforms/
 plugins/
 .DS_Store
+
+*.d.ts
+debug.log
+jsconfig.json
+
