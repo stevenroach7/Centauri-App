@@ -1,18 +1,26 @@
 <ion-view hide-nav-bar="true" hide-back-button="true" view-title="">
   <ion-content has-bouncing="false" overflow-scroll="false">
 
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Currently browsing
+      </div>
+      <select>
+        <option selected>All</option>
+        <option>Machine Learning</option>
+        <option>Mathematics</option>
+        <option>Neuroscience</option>
+      </select>
+    </label>
+
     <div class="card full-card">
       <ion-slide-box>
-        <ion-slide ng-repeat="imageUrl in curPaper.content.images">
+        <ion-slide ng-repeat="imageUrl in imageUrls">
           <div class="item item-image slide-image">
             <img ng-src="{{imageUrl}}">
           </div>
         </ion-slide>
       </ion-slide-box>
-      <div class="item item-text-wrap">
-        {{curPaper().content["short-description"]}}
-
-      </div>
     </div>
 
     <div class="button-bar">

@@ -157,7 +157,7 @@ angular.module('centauriApp.controllers', [])
 .controller('PortfolioFolderCtrl', function($scope, $stateParams) {
   $scope.folder = $stateParams.foldername;
   $scope.papers = {
-    "Machine Learning" : ["a", "b"],
+    "Machine Learning" : ["Algorithm for Evolving AIs using principles of genetics", "Machine Learning algorithm designed around interpereting images"],
     "Neuroscience" : ["c", "d"],
   }
 })
@@ -193,7 +193,7 @@ angular.module('centauriApp.controllers', [])
 
     RequestService.addRequest($scope.requestData)
     .then(function() {
-        showAlert("Request Posted", "Thanks for sending a request.")
+        showAlert("Request Posted", "Thanks for sending a request.g")
         $state.go('tab.portfolio');
       })
       .catch(function(errorMessage) {
