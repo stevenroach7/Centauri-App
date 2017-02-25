@@ -124,7 +124,7 @@ angular.module('centauriApp.controllers', [])
 
 })
 
-.controller('FeedCtrl', function($scope, ResearchService) {
+.controller('FeedCtrl', function($scope, ResearchService, AccountService, AuthenticationService) {
 
   $scope.researchIndex = 0;
   $scope.currentResearch = ResearchService.getResearchData(0);
@@ -134,6 +134,11 @@ angular.module('centauriApp.controllers', [])
     $scope.currentResearch = ResearchService.getResearchData($scope.researchIndex);
   };
 
+  var currentUserID = AuthenticationService.getCurrentUserID();
+  $scope.paperObjects = ResearchService.getResearchExamples([]);
+  $scope.userPrefTags = AccountService.getExplorerGenreTags(currentUserID);
+  $scope.savedPapers = AccountService.getExplorerSavedPaperIDs(currentUserID);
+  // $scope.userPrefTags = [];
 
 })
 
@@ -147,4 +152,31 @@ angular.module('centauriApp.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+
+
+.filter('filterPapers', function($filter) {
+    /* Takes a time in seconds and converts it to a string represetation of the time. */
+    return function(papers, tagsFilterArray) {
+
+      var filteredPapers;
+
+      if (tagsFilterArray.length === 0) {
+        filteredPapers = papers;
+      } else {
+        filteredPapers = [];
+        for (var i = 0; i < papers.length; i++) {
+          var paper = papers[i];
+          for (var j = 0; j < tagsFilterArray.length; j++) {
+            if (paper.tags[tagsFilterArray[i]] === 1) {
+              filteredPapers.push(paper);
+              break;
+            }
+          }
+        }
+      }
+      // return filteredPapers;
+      return papers;
+    };
 });

@@ -125,7 +125,7 @@ servMod.factory('AuthenticationService', function(firebase, $q) {
 
 
 
-servMod.factory('ResearchService', function($firebaseObject, $q) {
+servMod.factory('ResearchService', function($firebaseArray, $q) {
   /* Contains methods to get research data */
 
 
@@ -144,8 +144,7 @@ servMod.factory('ResearchService', function($firebaseObject, $q) {
       journal: "",
       imageUrl: "../img/perry.png"
     }
-  ]
-
+  ];
 
 
 
@@ -155,9 +154,21 @@ servMod.factory('ResearchService', function($firebaseObject, $q) {
     getResearchData: function(index) {
       /* Returns a fake example of a research paper description. */
       return researchExamples[index];
-    }
+    },
 
-    ,
+
+    getResearchExamples: function() {
+      /* Queries the firebaseDB to return an array of papers
+       to display in the feed. */
+
+      // Get array of research papers.
+      var papersRef = firebase.database().ref().child("research-examples");
+      var papers = $firebaseArray(papersRef);
+
+      return papers;
+    },
+
+
     getResearchExample: function(exampleID) {
       /* Takes the id of a research example and returns an object representing that example.*/
       var deferred = $q.defer();
@@ -177,7 +188,61 @@ servMod.factory('ResearchService', function($firebaseObject, $q) {
   };
 
 
-
-
-
 });
+
+
+
+servMod.factory('AccountService', function($firebaseObject, $firebaseArray, $q) {
+    /* Contains methods used to access account data. */
+
+    return {
+
+      getExplorer: function(explorerID) {
+        /* Takes a userID and returns the user object in the firebase DB for that id. */
+        var deferred = $q.defer();
+
+        var explorerRef = firebase.database().ref().child("explorers").child(explorerID);
+        var explorer = $firebaseObject(explorerRef);
+        explorer.$loaded()
+        .then(function() {
+          deferred.resolve(explorer);
+        })
+        .catch(function(error) {
+          deferred.reject();
+        });
+      return deferred.promise;
+    },
+
+    getExplorerGenreTags: function(explorerID) {
+      /* Takes an explorerID and returns an array of their genre preferences. */
+
+     // Get array of research papers.
+     var genresRef = firebase.database().ref().child("explorers").child(explorerID).child("preferences").child("genres");
+     var genres = $firebaseArray(genresRef);
+
+     return genres;
+
+   },
+
+   getExplorerSavedPaperIDs: function(explorerID) {
+     /* Takes an explorerID and returns an array with the id's of their saved papers. */
+
+    // Get array of research papers.
+    var savedPapersRef = firebase.database().ref().child("explorers").child(explorerID).child("saved-papers");
+    var savedPapers = $firebaseArray(savedPapersRef);
+
+    return savedPapers;
+  },
+
+  getExplorerIgnoredPaperIDs: function(explorerID) {
+    /* Takes an explorerID and returns an array with the id's of their ignored papers. */
+
+   // Get array of research papers.
+   var ignoredPapersRef = firebase.database().ref().child("explorers").child(explorerID).child("ignored-papers");
+   var ignoredPapers = $firebaseArray(ignoredPapersRef);
+
+   return ignoredPapers;
+  }
+
+    };
+  });
