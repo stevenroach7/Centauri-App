@@ -145,14 +145,58 @@ angular.module('centauriApp.controllers', [])
   }
 
 
+  function filterPapers(paperObjects, userPrefTags, savedPapersIDs, ignoredPaperIDs) {
+
+    var filteredPapers;
+
+    if (userPrefTags.length === 0) {
+      filteredPapers = paperObjects;
+    } else {
+      filteredPapers = [];
+      for (var i = 0; i < paperObjects.length; i++) {
+        var paper = paperObjects[i];
+        for (var j = 0; j < userPrefTags.length; j++) {
+
+          if (paper.tags[userPrefTags[j]] === 1) {
+            filteredPapers.push(paperObjects[i].id);
+            break;
+          }
+        }
+      }
+    }
+
+    var filteredPapersUnseen = [];
+
+    for (var k = 0; k < filteredPapers.length; k++) {
+
+        if (savedPapersIDs.indexOf(filteredPapers[k]) == -1 && ignoredPaperIDs.indexOf(filteredPapers[k]) == -1) {
+          filteredPapersUnseen.push(filteredPapers[k]);
+        }
+    }
+    return filteredPapersUnseen;
+  }
+
+
   var currentUserID = AuthenticationService.getCurrentUserID();
-  $scope.paperObjects = ResearchService.getResearchExamples([]);
-  $scope.userPrefTags = AccountService.getExplorerGenreTags(currentUserID);
-  $scope.savedPapers = AccountService.getExplorerSavedPaperIDs(currentUserID);
-  // $scope.userPrefTags = [];
+  var paperObjects = ResearchService.getResearchExamples();
+  var userPref = AccountService.getExplorerGenreTags(currentUserID);
+  var papersSeen = AccountService.getExplorerPapersSeenIDs(currentUserID);
+
+
+  setTimeout(function() {
+
+    var ignoredPaperIDs = papersSeen[0];
+    var savedPapersIDs = papersSeen[1];
+    var userPrefTags = userPref[0];
+
+    $scope.paperObjects = filterPapers(paperObjects, userPrefTags, savedPapersIDs, ignoredPaperIDs);
+
+  }, 1000);
+
 
 
 })
+
 
 .controller('PortfolioCtrl', function($scope) {
   $scope.folders = [ "Machine Learning", "Neuroscience", "Chemistry", "Physics", "Biology"]
@@ -179,31 +223,34 @@ angular.module('centauriApp.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-})
-
-
-
-.filter('filterPapers', function($filter) {
-    /* Takes a time in seconds and converts it to a string represetation of the time. */
-    return function(papers, tagsFilterArray) {
-
-      var filteredPapers;
-
-      if (tagsFilterArray.length === 0) {
-        filteredPapers = papers;
-      } else {
-        filteredPapers = [];
-        for (var i = 0; i < papers.length; i++) {
-          var paper = papers[i];
-          for (var j = 0; j < tagsFilterArray.length; j++) {
-            if (paper.tags[tagsFilterArray[i]] === 1) {
-              filteredPapers.push(paper);
-              break;
-            }
-          }
-        }
-      }
-      // return filteredPapers;
-      return papers;
-    };
 });
+
+
+
+// .filter('filterPapers', function($filter) {
+//     /* Takes a time in seconds and converts it to a string represetation of the time. */
+//     return function(papers, tagsFilterArray) {
+//
+//       var filteredPapers;
+//
+//       if (tagsFilterArray.length === 0) {
+//         filteredPapers = papers;
+//       } else {
+//         filteredPapers = [];
+//         for (var i = 0; i < papers.length; i++) {
+//           var paper = papers[i];
+//           for (var j = 0; j < tagsFilterArray.length; j++) {
+//
+//             var tag = tagsFilterArray.value;
+//             console.log(tag);
+//             if (paper.tags[tagsFilterArray[i]] === 1) {
+//               filteredPapers.push(paper);
+//               break;
+//             }
+//           }
+//         }
+//       }
+//       // return filteredPapers;
+//       return papers;
+//     };
+// });
