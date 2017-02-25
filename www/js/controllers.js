@@ -126,15 +126,23 @@ angular.module('centauriApp.controllers', [])
 
 .controller('FeedCtrl', function($scope, $ionicSlideBoxDelegate, ResearchService, AccountService, AuthenticationService) {
 
-  $scope.imageUrls = ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"];
+
+  $scope.useCases = [
+
+    ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"],
+    ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"],
+    ["/img/uc3s1.png", "/img/uc3s2.png", "/img/uc3s3.png"]
+  ];
+
+  $scope.feedIndex = 0;
 
   $scope.onIgnore = function() {
-    $scope.imageUrls = ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+    $scope.feedIndex++;
     $ionicSlideBoxDelegate.update();
     $ionicSlideBoxDelegate.slide(0);
   };
   $scope.onSave = function() {
-    $scope.imageUrls = ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+    $scope.feedIndex++;
     $ionicSlideBoxDelegate.update();
     $ionicSlideBoxDelegate.slide(0);
   };
