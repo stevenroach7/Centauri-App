@@ -8,9 +8,13 @@
     </div>
 
     <div class="card full-card">
-      <div class="item item-image">
-        <img src="{{u}}">
-      </div>
+      <ion-slide-box>
+        <ion-slide ng-repeat="imageUrl in u">
+          <div class="item item-image slide-image">
+            <img src="{{imageUrl}}">
+          </div>
+        </ion-slide>
+      </ion-slide-box>
       <div class="item item-text-wrap">
         {{paper.content["short-description"]}}
       </div>

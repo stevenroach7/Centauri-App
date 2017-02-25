@@ -12,12 +12,20 @@ textarea {
 
 /* Have to do it this way so it'll override ionic's css styles*/
 .slide-image img:first-child {
-  height: 275px;
+  height: 215px;
   width: auto;
 }
 
 .col {
   padding: 0px;
+}
+
+.space {
+  height: 45px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .folder-card {

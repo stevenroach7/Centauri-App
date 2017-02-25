@@ -124,23 +124,20 @@ angular.module('centauriApp.controllers', [])
 
 })
 
-.controller('FeedCtrl', function($scope, ResearchService, AccountService, AuthenticationService) {
+.controller('FeedCtrl', function($scope, $ionicSlideBoxDelegate, ResearchService, AccountService, AuthenticationService) {
 
 
-  $scope.paperObjects = ResearchService.getResearchExamples();
-
-  $scope.curPaperIndex = 0;
-
-  $scope.curID = function() {
-    return $scope.curPaperID;
-  };
+  $scope.imageUrls = ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"];
 
   $scope.onIgnore = function() {
-
-    $scope.curPaperID++;
+    $scope.imageUrls = ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+    $ionicSlideBoxDelegate.update();
+    $ionicSlideBoxDelegate.slide(0);
   };
   $scope.onSave = function() {
-    $scope.curPaperID++;
+    $scope.imageUrls = ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+    $ionicSlideBoxDelegate.update();
+    $ionicSlideBoxDelegate.slide(0);
   };
 
 })
@@ -157,14 +154,14 @@ angular.module('centauriApp.controllers', [])
 .controller('PortfolioFolderCtrl', function($scope, $stateParams) {
   $scope.folder = $stateParams.foldername;
   $scope.papers = { 
-    "Machine Learning" : ["a", "b"],
+    "Machine Learning" : ["Algorithm for Evolving AIs using principles of genetics", "Machine Learning algorithm designed around interpereting images"],
     "Neuroscience" : ["c", "d"],
   }
 })
 
 .controller('PortfolioViewItemCtrl', function($scope, $stateParams, $ionicSlideBoxDelegate, ResearchService) {
   $scope.paper = ResearchService.getResearchExamples([])[0];
-  $scope.u = "/img/max.png";
+  $scope.u = [ "/img/max.png", "/img/mike.png", "/img/perry.png" ];
 })
 
 .controller('AccountCtrl', function($scope) {
