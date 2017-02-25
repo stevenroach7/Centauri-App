@@ -80,7 +80,7 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
       }
     }
   })
-  
+
   .state('tab.portfolioviewitem', {
     url: '/portfolioviewitem/:paperid',
     views: {
@@ -91,16 +91,15 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
     }
   })
 
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+  .state('tab.request', {
+      url: '/request',
+      views: {
+        'tab-request': {
+          templateUrl: 'templates/post-research-request.html'
+        }
       }
-    }
-  });
+    });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
