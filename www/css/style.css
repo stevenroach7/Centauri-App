@@ -1,6 +1,13 @@
-
 .full-card {
   margin: 0px 0px 0px 0px;
+}
+
+.textarea-input {
+  height: 400px;
+}
+
+textarea {
+  height: 100%;
 }
 
 /* Have to do it this way so it'll override ionic's css styles*/
