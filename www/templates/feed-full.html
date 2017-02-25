@@ -1,16 +1,17 @@
 <ion-view hide-nav-bar="true" hide-back-button="true" view-title="">
-  <ion-content has-bouncing="false" scroll="false">
+  <ion-content has-bouncing="false" overflow-scroll="false">
 
     <div class="card full-card">
       <ion-slide-box>
-        <ion-slide ng-repeat="imageUrl in curPaper().content.images">
+        <ion-slide ng-repeat="imageUrl in curPaper.content.images">
           <div class="item item-image slide-image">
-            <img src="{{imageUrl}}">
+            <img ng-src="{{imageUrl}}">
           </div>
         </ion-slide>
       </ion-slide-box>
       <div class="item item-text-wrap">
         {{curPaper().content["short-description"]}}
+
       </div>
     </div>
 
