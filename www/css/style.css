@@ -20,16 +20,8 @@ textarea {
   padding: 0px;
 }
 
-.row {
-  height: 30%;
-}
-
-/* only make first row short */
-.row { margin-top: 44px; }
-.row ~ .row { margin-top: 0px; }
-
 .folder-card {
-  height: 90%;
+  height: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
