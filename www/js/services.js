@@ -124,3 +124,43 @@ servMod.factory('AuthenticationService', function(firebase, $q) {
   };
 
 });
+
+
+
+servMod.factory('ResearchService', function() {
+  /* Contains methods to get research data */
+
+
+  var researchExample = {
+
+    title: "Neural Network",
+    author: "Terence Tao",
+    description: "Fancy Math",
+    journal: "",
+    imageUrl: "../img/neural-network.png"
+
+  };
+
+
+
+
+
+  return {
+
+    getResearchData: function() {
+      /* Returns a fake example of a research paper description. */
+      return researchExample;
+    }
+
+
+
+
+
+
+  };
+
+
+
+
+
+});

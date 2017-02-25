@@ -127,8 +127,11 @@ angular.module('centauriApp.controllers', [])
 
 })
 
-.controller('FeedCtrl', function($scope) {
+.controller('FeedCtrl', function($scope, ResearchService) {
 
+
+  $scope.researchExample = ResearchService.getResearchData();
+  
 
 
 })
