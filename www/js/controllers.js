@@ -115,7 +115,7 @@ angular.module('centauriApp.controllers', [])
     /*  Tracks user authentication status using observer and reroutes user if neccessary. */
     if (user) {
       // User is signed in.
-      $state.go('tab.dash');
+      $state.go('tab.feed');
     } else {
       // No user is signed in.
       $state.go('login');
@@ -127,15 +127,17 @@ angular.module('centauriApp.controllers', [])
 
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('FeedCtrl', function($scope) {
 
-.controller('ChatsCtrl', function($scope) {
+
 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('PortfolioCtrl', function($scope) {
+
 })
+
+
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

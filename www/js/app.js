@@ -51,34 +51,26 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.feed', {
+    url: '/research-feed',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-feed': {
+        templateUrl: 'templates/research-feed.html',
+        controller: 'FeedCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.portfolio', {
+      url: '/portfolio',
       views: {
-        'tab-chats': {
+        'tab-portfolio': {
           templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          controller: 'PortfolioCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+
 
   .state('tab.account', {
     url: '/account',
