@@ -131,7 +131,8 @@ angular.module('centauriApp.controllers', [])
 
     ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"],
     ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"],
-    ["/img/uc3s1.png", "/img/uc3s2.png", "/img/uc3s3.png"]
+    ["/img/uc3s1.png", "/img/uc3s2.png", "/img/uc3s3.png"],
+    ["/img/uc4s1.png", "/img/uc3s2.png", "/img/uc3s3.png"]
   ];
 
   $scope.feedIndex = 0;
