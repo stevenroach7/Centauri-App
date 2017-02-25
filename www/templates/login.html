@@ -1,0 +1,31 @@
+<ion-view view-title="Centauri">
+
+  <ion-content class="login-view" has-bouncing="false" scroll="true">
+    <div class="login-container">
+
+
+      <form ng-submit="login()">
+        <div class="list">
+          <label class="item item-input item-login">
+            <span class="input-label">Email:</span>
+            <input type="email" ng-model="loginData.loginEmail">
+          </label>
+          <label class="item item-input item-login">
+            <span class="input-label">Password:</span>
+            <input type="password" ng-model="loginData.loginPassword">
+          </label>
+          <label class="item item-login">
+            <button class="button button-block button-balanced" type="submit">Log in</button>
+          </label>
+        </div>
+      </form>
+
+      <label class="item register-item">
+        <button class="button button-block button-outline button-balanced" ng-click="showRegistrationModal()">
+          Register
+        </button>
+      </label>
+
+    </div>
+  </ion-content>
+</ion-view>
