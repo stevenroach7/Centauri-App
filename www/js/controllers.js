@@ -124,23 +124,20 @@ angular.module('centauriApp.controllers', [])
 
 })
 
-.controller('FeedCtrl', function($scope, ResearchService, AccountService, AuthenticationService) {
+.controller('FeedCtrl', function($scope, $ionicSlideBoxDelegate, ResearchService, AccountService, AuthenticationService) {
 
 
-  $scope.paperObjects = ResearchService.getResearchExamples();
-
-  $scope.curPaperIndex = 0;
-
-  $scope.curID = function() {
-    return $scope.curPaperID;
-  };
+  $scope.imageUrls = ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"];
 
   $scope.onIgnore = function() {
-
-    $scope.curPaperID++;
+    $scope.imageUrls = ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+    $ionicSlideBoxDelegate.update();
+    $ionicSlideBoxDelegate.slide(0);
   };
   $scope.onSave = function() {
-    $scope.curPaperID++;
+    $scope.imageUrls = ["/img/uc2s1.png", "/img/uc2s2.png", "/img/uc2s3.png"];
+    $ionicSlideBoxDelegate.update();
+    $ionicSlideBoxDelegate.slide(0);
   };
 
 })
