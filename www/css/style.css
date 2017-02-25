@@ -37,6 +37,10 @@ textarea {
   height: 100%;
 }
 
+.above-input-text {
+  white-space: normal;
+}
+
 /* Have to do it this way so it'll override ionic's css styles*/
 .slide-image img:first-child {
   height: 500px;
