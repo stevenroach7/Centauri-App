@@ -128,11 +128,20 @@ angular.module('centauriApp.controllers', [])
 
   $scope.researchIndex = 0;
   $scope.currentResearch = ResearchService.getResearchData(0);
+<<<<<<< HEAD
 
   $scope.showNewResearch = function() {
     $scope.researchIndex = $scope.researchIndex + 1;
     $scope.currentResearch = ResearchService.getResearchData($scope.researchIndex);
   };
+=======
+  
+  $scope.showNewResearch = function() {
+    $scope.researchIndex = $scope.researchIndex + 1;
+    $scope.currentResearch = ResearchService.getResearchData($scope.researchIndex);
+  }
+
+>>>>>>> c2a76f9ef484362a40f6b9254d4bf040fdb69995
 
 })
 

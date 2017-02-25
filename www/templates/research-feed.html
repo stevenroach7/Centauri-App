@@ -2,15 +2,15 @@
   <ion-content has-bouncing="false" scroll="false">
     <div class="card">
       <div class="item item-image">
-        <img src="{{researchExample.imageUrl}}">
+        <img src="{{currentResearch.imageUrl}}">
       </div>
     </div>
 
     <div class="button-bar">
-      <button class="button button-large button-balanced">
+      <button class="button button-large button-balanced" ng-click="showNewResearch()">
         Cool
       </button>
-      <button class="button button-large button-energized">
+      <button class="button button-large button-energized" ng-click="showNewResearch()">
         Meh
       </button>
     </div>

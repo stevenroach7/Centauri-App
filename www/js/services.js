@@ -144,7 +144,9 @@ servMod.factory('ResearchService', function($firebaseObject, $q) {
       journal: "",
       imageUrl: "../img/perry.png"
     }
-  ];
+  ]
+
+
 
 
 
@@ -153,8 +155,9 @@ servMod.factory('ResearchService', function($firebaseObject, $q) {
     getResearchData: function(index) {
       /* Returns a fake example of a research paper description. */
       return researchExamples[index];
-    },
+    }
 
+    ,
     getResearchExample: function(exampleID) {
       /* Takes the id of a research example and returns an object representing that example.*/
       var deferred = $q.defer();
