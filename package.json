@@ -1,6 +1,6 @@
 {
   "name": "centauri-app",
-  "version": "1.1.1",
+  "version": "1.0",
   "description": "Centauri-App: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
