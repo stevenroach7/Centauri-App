@@ -190,6 +190,37 @@ servMod.factory('ResearchService', function($firebaseArray, $q) {
 });
 
 
+servMod.factory('RequestService', function($firebaseArray, $q) {
+
+
+
+  return {
+    addRequest: function(requestData) {
+        /* Takes a requestData object and adds it to the firebase DB into the games object. */
+
+        var deferred = $q.defer(); // deferred promise.
+
+        var requestRef = firebase.database().ref().child("requests");
+        var requests = $firebaseArray(requestRef);
+
+        requests.$add(requestData)
+        .then(function(ref) {
+          deferred.resolve();
+        })
+        .catch(function(error) {
+          deferred.reject("Please try again.");
+        });
+
+      return deferred.promise;
+    }
+
+  };
+
+
+});
+
+
+
 
 servMod.factory('AccountService', function($firebaseObject, $firebaseArray, $q) {
     /* Contains methods used to access account data. */

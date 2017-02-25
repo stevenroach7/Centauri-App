@@ -95,7 +95,8 @@ angular.module('centauriApp', ['ionic', 'centauriApp.controllers', 'centauriApp.
       url: '/request',
       views: {
         'tab-request': {
-          templateUrl: 'templates/post-research-request.html'
+          templateUrl: 'templates/post-research-request.html',
+          controller: 'RequestCtrl'
         }
       }
     });

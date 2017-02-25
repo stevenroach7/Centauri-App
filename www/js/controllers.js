@@ -156,7 +156,7 @@ angular.module('centauriApp.controllers', [])
 
 .controller('PortfolioFolderCtrl', function($scope, $stateParams) {
   $scope.folder = $stateParams.foldername;
-  $scope.papers = { 
+  $scope.papers = {
     "Machine Learning" : ["a", "b"],
     "Neuroscience" : ["c", "d"],
   }
@@ -167,8 +167,39 @@ angular.module('centauriApp.controllers', [])
   $scope.u = "/img/max.png";
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('RequestCtrl', function($scope, $state, RequestService, $ionicPopup) {
+
+
+  function showAlert(titleMessage, templateMessage) {
+    /* Takes a title message and a template message and displays an error alert with the inputted messages. */
+    var alertPopup = $ionicPopup.alert({
+      title: titleMessage,
+      template: templateMessage,
+      okType: 'button-balanced'
+    });
+  }
+
+  function resetRequestData() {
+    $scope.requestData = {
+      email: "",
+      requestContent: "",
+      subject: ""
+    };
+  }
+
+  resetRequestData();
+
+  $scope.postRequest = function() {
+
+    RequestService.addRequest($scope.requestData)
+    .then(function() {
+        showAlert("Request Posted", "Thanks for sending a request.")
+        $state.go('tab.portfolio');
+      })
+      .catch(function(errorMessage) {
+        showAlert("Error", errorMessage);
+      });
+
   };
+
 });
