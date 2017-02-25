@@ -1,6 +1,7 @@
 <ion-view hide-nav-bar="true" hide-back-button="true" view-title="">
   <ion-content has-bouncing="false" overflow-scroll="true">
     <div class="bar bar-header">
+      <button class="button button-balanced button-clear" ng-click="logout()">Logout</button>
       <h1 class="title"></h1>
       <button class="button button-icon icon ion-plus" ng-click="newfolder(&quot;[Empty folder]&quot;)">New Folder</button>
     </div>
@@ -18,51 +19,5 @@
         </div>
       </div>
     </div>
-
-    <!--
-    <div class="row">
-      <div class="col">
-        <div class="card folder-card">
-          <div class="item item-text-wrap">
-            Machine Learning
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card folder-card">
-          <div class="item item-text-wrap">
-            Neuroscience
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="card folder-card">
-          <div class="item item-text-wrap">
-            Chemistry
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card folder-card">
-          <div class="item item-text-wrap">
-            Physics
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <div class="card folder-card">
-          <div class="item item-text-wrap">
-            Biology
-          </div>
-        </div>
-      </div>
-      <div class="col"></div>
-    </div>
-    -->
   </ion-content>
 </ion-view>
