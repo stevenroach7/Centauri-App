@@ -126,7 +126,6 @@ angular.module('centauriApp.controllers', [])
 
 .controller('FeedCtrl', function($scope, $ionicSlideBoxDelegate, ResearchService, AccountService, AuthenticationService) {
 
-
   $scope.imageUrls = ["/img/uc1s1.png", "/img/uc1s2.png", "/img/uc1s3.png"];
 
   $scope.onIgnore = function() {
@@ -143,13 +142,43 @@ angular.module('centauriApp.controllers', [])
 })
 
 
-.controller('PortfolioCtrl', function($scope) {
-  $scope.folders = [ "Machine Learning", "Neuroscience", "Chemistry", "Physics", "Biology"]
+.controller('PortfolioCtrl', function($scope, $ionicPopup) {
 
-  $scope.newfolder = function(name) {
-    $scope.folders.push(name);
-  }
+  $scope.folders = [ "Machine Learning", "Neuroscience", "Chemistry", "Physics", "Biology"];
+
+  $scope.newfolder = function() {
+    /* Takes a user and displays the edit profile popup for that user. */
+
+    $scope.data = {}; // object to be used in popup.
+    $scope.data.name = "";
+
+    var createFolderPopup = $ionicPopup.show({
+      template: '<span class="required-label">Name:</span><input type="text" ng-model="data.name" maxlength="40">',
+      title: 'Create Folder',
+      subTitle: '',
+      scope: $scope,
+      buttons: [{
+        text: 'Cancel'
+      }, {
+        text: 'Submit',
+        type: 'button-balanced',
+        onTap: function(e) {
+          return $scope.data;
+        }
+      }]
+    });
+
+    createFolderPopup.then(function(res) {
+      if (res) {
+        if ($scope.folders.indexOf(res.name) == -1) {
+          $scope.folders.push(res.name);
+        }
+      }
+    });
+  };
+
 })
+
 
 .controller('PortfolioFolderCtrl', function($scope, $stateParams) {
   $scope.folder = $stateParams.foldername;
@@ -190,7 +219,7 @@ angular.module('centauriApp.controllers', [])
 
     RequestService.addRequest($scope.requestData)
     .then(function() {
-        showAlert("Request Posted", "Thanks for sending a request.g")
+        showAlert("Request Posted", "Thanks for sending a request.");
         $state.go('tab.portfolio');
       })
       .catch(function(errorMessage) {
