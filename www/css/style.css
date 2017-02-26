@@ -14,6 +14,15 @@ button, a {
   background-color: #cccccc !important;
 }
 
+
+.logo-container {
+  align-items: center;
+}
+
+.logo {
+  max-width: 100%;
+}
+
 .save-ignore-bar {
   margin-top: 3px;
 }
